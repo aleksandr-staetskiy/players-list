@@ -16,15 +16,15 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
               positin: "SE",
               teamName: "LA Lakers"
         ),
-        Playr(name: "Lebron James",
-              height: "6'8",
-              positin: "SE",
+        Playr(name: "Antony Davis",
+              height: "7'0",
+              positin: "PF",
               teamName: "LA Lakers"
         ),
-        Playr(name: "Lebron James",
-              height: "6'8",
-              positin: "SE",
-              teamName: "LA Lakers"
+        Playr(name: "Jimmy Butler",
+              height: "6'6",
+              positin: "SF",
+              teamName: "Miami Heat"
         ),
     ]
 
@@ -42,6 +42,7 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
         let player = players[indexPath.row]
         
         cell.textLabel?.text = player.name
+        cell.detailTextLabel?.text = player.teamName
         
         return cell
     }
@@ -49,8 +50,10 @@ class PlayersViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         
-        let playerViewController = storyboard.instantiateViewController(identifier: "PlayerViewController")
+        let playerViewController = storyboard.instantiateViewController(identifier: "PlayerViewController") as! PlayerViewController
         
+        let player = players[indexPath.row]
+        playerViewController.player = player
         navigationController?.pushViewController(playerViewController, animated: true)
     }
 
